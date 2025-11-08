@@ -2,13 +2,116 @@
 
 {% block title %}Login{% endblock%}
 
-{% block content %}
-<div>
-    <form action="" method="post">
-        {% comment "" %}without the form will not ed by django{% endcomment %}
+{% block authcontent %}
+<div class="bg-[#020013] rounded-3xl shadow-2xl p-8 lg:p-10">
+    <!-- Logo/Header -->
+    <div class="text-center mb-8">
+        <div class="w-20 h-20 bg-gradient-to-r from-[#F59E0B] to-yellow-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+            </svg>
+        </div>
+        <h1 class="text-3xl font-bold text-white mb-2">Todo App</h1>
+        <h3 class="text-xl font-bold text-white mb-2">Welcome to the Todo App</h3>
+        <p class="text-gray-600">Sign in to your account to continue</p>
+    </div>
+
+    <!-- Login Form -->
+    <form action="" method="post" class="space-y-6">
         {% csrf_token %}
-        {{form}}
-        <button type="submit">Login</button>
+        
+        <!-- Username Field -->
+        <div>
+            <label for="{{ form.username.id_for_label }}" class="block text-sm font-semibold text-white mb-2">
+                Username
+            </label>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                </div>
+                {{ form.username }}
+            </div>
+            {% if form.username.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.username.errors.0 }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Password Field -->
+        <div>
+            <label for="{{ form.password.id_for_label }}" class="block text-sm font-semibold text-white mb-2">
+                Password
+            </label>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                    </svg>
+                </div>
+                {{ form.password }}
+            </div>
+            {% if form.password.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.password.errors.0 }}</p>
+            {% endif %}
+            
+            <!-- Show Password Checkbox -->
+            <div class="flex items-center mt-3">
+                <input type="checkbox" id="showPassword" class="w-4 h-4 text-[#F59E0B] bg-gray-100 border-gray-300 rounded focus:ring-[#F59E0B] focus:ring-2">
+                <label for="showPassword" class="ml-2 text-sm text-white cursor-pointer">Show password</label>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full bg-gradient-to-r from-[#020013] to-[#0a0a2e] hover:from-[#0a0a2e] hover:to-[#020013] text-white font-semibold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer">
+            <span class="flex items-center justify-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+                Sign In
+            </span>
+        </button>
     </form>
+
+    <!-- Register Link -->
+    <div class="mt-8 text-center">
+        <p class="text-gray-600">
+            Don't have an account?
+            <a href="{% url 'register' %}" class="font-semibold text-[#F59E0B] hover:text-yellow-600 transition-colors duration-200">
+                Create one here
+            </a>
+        </p>
+    </div>
 </div>
+
+<style>
+    /* Custom form field styling */
+    input[type="text"], input[type="password"] {
+        width: 100%;
+        padding: 12px 12px 12px 40px;
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        font-size: 16px;
+        transition: all 0.2s ease-in-out;
+        background-color: #f9fafb;
+    }
+    
+    input[type="text"]:focus, input[type="password"]:focus {
+        outline: none;
+        border-color: #F59E0B;
+        background-color: white;
+        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+    }
+</style>
+
+<script>
+    document.getElementById('showPassword').addEventListener('change', function() {
+        const passwordField = document.querySelector('input[name="password"]');
+        if (this.checked) {
+            passwordField.type = 'text';
+        } else {
+            passwordField.type = 'password';
+        }
+    });
+</script>
 {% endblock%}
