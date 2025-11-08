@@ -1,0 +1,23 @@
+# Env files
+.env
+.env.* 
+
+# Virtual env
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# DB & files
+*.sqlite3
+/media/
+/staticfiles/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
