@@ -6,8 +6,9 @@ urlpatterns = [
     path('register/', views.register_user, name='register'),
     path('logout/', views.logout_user, name='logout'),
     path('dashboard', views.dashboard, name='dashboard'),
-    path('dashboard/new', views.new_todo, name='new_todo'),
-    path('dashboard/todo/<int:id>', views.todo_detail, name='todo_detail'),
-    path('dashboard/todo/update/<int:id>', views.update_todo, name='update_todo'),
-    path('dashboard/todo/delete/<int:id>', views.delete_todo, name='delete_todo'),
+    path('todos', views.todos, name='todos'),
+    path('todos/new', views.new_todo, name='new_todo'),
+    path('todos/todo/<int:id>', views.todo_detail, name='todo_detail'),
+    path('todos/update/<int:id>', views.update_todo, name='update_todo'),
+    path('todos/delete/<int:id>', views.delete_todo, name='delete_todo'),
 ]

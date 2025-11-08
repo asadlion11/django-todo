@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 # Custom User
 class User(AbstractUser):
+    # pass python keyword meand do nothin
     pass
 
 

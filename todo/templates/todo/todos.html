@@ -1,0 +1,36 @@
+{% extends "./base.html" %} 
+
+{% block title %}Add Todos{% endblock%} 
+
+{% block content %}
+
+<h2>All Todos</h2>
+
+<a href="{% url 'new_todo' %}"><button>Create Todo</button></a>
+
+<ul>
+  {% for todo in todos %}
+  <li>
+    <div>
+      <h2>{{ todo.title }}</h2>
+    </div>
+    <div>
+      <p>{{todo.description}}</p>
+    </div>
+    <div>
+      <p>{% if todo.is_complete %} Done {% else %} UnDone {% endif %}</p>
+    </div>
+    <div>
+      <a href="{% url 'update_todo' todo.id%}"> <button>Update</button></a>
+      <form action="{% url 'delete_todo' todo.id %}" method="post">
+        {% csrf_token %}
+        <button>Delete</button>
+      </form>
+    </div>
+  </li>
+
+  {% endfor %}
+  
+</ul>
+
+{% endblock%}

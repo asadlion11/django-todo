@@ -1,15 +1,21 @@
-{% comment %} get all contents of the base.html file {% endcomment %}
 {% extends "./base.html" %} 
 
 {% block title %}Dashboard{% endblock%}
 
 {% block content %}
+<h1>Dashboard</h1>
 <div>
-    <form action="" method="post">
-        {% comment "" %}without the form will not ed by django{% endcomment %}
-        {% csrf_token %}
-        {{form}}
-        <button type="submit">Dashboard Page</button>
-    </form>
+    <div>
+        <h1>All Todos</h1>
+        <p>{{ total_todos }}</p>
+    </div>
+    <div>
+        <h1>Done Todos</h1>
+        <p>{{ done_todos }}</p>
+    </div>
+    <div>
+        <h1>Un Done Todos</h1>
+        <p>{{ undone_todos }}</p>
+    </div>
 </div>
 {% endblock%}
