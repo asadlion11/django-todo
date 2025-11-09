@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate,logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from .models import Todo
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -101,5 +102,3 @@ def delete_todo(request, id):
     if request.method == 'POST':
         todo.delete()
     return redirect('todos')
-
-
