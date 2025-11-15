@@ -18,7 +18,7 @@ class CustomUserCreationForm(UserCreationForm):
 class TodoForm(ModelForm):
     class Meta:
         model = Todo
-        fields = ['title', 'description', 'is_complete']
+        fields = ['title', 'description', 'status']
     
         
 class LoginForm(forms.Form):

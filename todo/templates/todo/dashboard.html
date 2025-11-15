@@ -5,12 +5,12 @@
 {% block content %}
 <!-- Header -->
 <div class="mb-8">
-    <h1 class="text-3xl lg:text-4xl font-bold text-white mb-2">Welcome {{ user.first_name|default:user.username }}!</h1>
+    <h1 class="text-3xl lg:text-4xl font-bold text-white mb-2 capitalize">Welcome {{ user.first_name }}  {{ user.last_name }}</h1>
     <p class="text-gray-600 text-lg">Here's an overview of your tasks</p>
 </div>
 
 <!-- Stats Cards -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
     <!-- All Todos Card -->
     <div class="bg-gradient-to-br from-[#020013] to-[#0a0a2e] rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
         <div class="flex items-center justify-between mb-4">
@@ -29,12 +29,21 @@
         <p class="text-green-100 text-sm">Tasks you've finished</p>
     </div>
 
+    <!-- In Progress Todos Card -->
+    <div class="bg-gradient-to-br from-green-900 to-yellow-900 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+        <div class="flex items-center justify-between mb-4">
+            <span class="text-3xl lg:text-4xl font-bold">{{ in_progress_todos }}</span>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">In Progress</h3>
+        <p class="text-green-100 text-sm">Tasks waiting to done</p>
+    </div>
+
     <!-- Undone Todos Card -->
     <div class="bg-gradient-to-br from-[#F59E0B] to-yellow-500 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
         <div class="flex items-center justify-between mb-4">
             <span class="text-3xl lg:text-4xl font-bold">{{ undone_todos }}</span>
         </div>
-        <h3 class="text-xl font-semibold mb-2">Pending</h3>
+        <h3 class="text-xl font-semibold mb-2">To Do</h3>
         <p class="text-yellow-100 text-sm">Tasks waiting for you</p>
     </div>
 </div>
@@ -72,13 +81,13 @@
             <div class="bg-gradient-to-r from-green-500 to-green-600 h-3 rounded-full transition-all duration-500" style="width: {% widthratio done_todos total_todos 100 %}%"></div>
         </div>
     </div>
-    <p class="text-gray-300 text-sm">
+    <p class="text-gray-300 text-sm font-bold">
         {% if done_todos == total_todos %}
             🎉 Congratulations! You've completed all your tasks!
         {% elif done_todos == 0 %}
             💪 Let's get started! You have {{ total_todos }} task{{ total_todos|pluralize }} waiting.
         {% else %}
-            🚀 Great progress! {{ undone_todos }} more task{{ undone_todos|pluralize }} to go.
+            🚀 Great progress! {{ waiting_todos }} tasks{{ waiting_todos|pluralize }} to go.
         {% endif %}
     </p>
 </div>
