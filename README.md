@@ -35,30 +35,53 @@ This is a full-featured todo application that provides user authentication, task
 
 ### Todo Management
 - ✅ Create, read, update, and delete todos
-- ✅ Mark todos as complete/incomplete
-- ✅ User-specific todo lists (privacy)
+- ✅ Three-status system (TODO, IN_PROGRESS, DONE)
+- ✅ User-specific todo lists with privacy controls
 - ✅ Todo creation and modification timestamps
+- ✅ Real-time search and filtering
+- ✅ Advanced sorting options (newest, oldest, A-Z, Z-A)
+- ✅ Pagination for large todo lists
+
+### Collaboration & Sharing
+- ✅ Share todos with other registered users
+- ✅ Real-time username validation during sharing
+- ✅ **Strict permission-based access controls**:
+  - **Owners**: Full access (edit, delete, share)
+  - **Shared users**: Status updates only (no editing/sharing)
+- ✅ Visual indicators for shared todos
+- ✅ Share during todo creation or after
+- ✅ **Security**: Only owners can share todos
 
 ### Dashboard & Analytics
-- ✅ Overview dashboard with statistics
-- ✅ Total, completed, and pending todo counts
-- ✅ Progress tracking with visual progress bar
+- ✅ Comprehensive 3-tier dashboard:
+  - **Overall Statistics** (owned + shared todos)
+  - **Your Own Tasks** (personal todos only)
+  - **Shared Tasks** (collaborative todos only)
+- ✅ Visual progress tracking with completion rates
+- ✅ Status-based categorization with icons
 - ✅ Motivational messages based on progress
+- ✅ Real-time statistics updates
 
 ### User Interface
-- ✅ Responsive design (mobile, tablet, desktop)
-- ✅ Dark theme with custom color scheme (#020013 primary, #F59E0B secondary)
+- ✅ Responsive table view with mobile card fallback
+- ✅ Dark theme with brand colors (#020013 primary, #F59E0B secondary)
 - ✅ Sidebar navigation with mobile hamburger menu
-- ✅ Card-based layout for todos
+- ✅ Live search without page refresh
+- ✅ Modal-based sharing interface
 - ✅ Smooth animations and hover effects
-- ✅ Form styling with icons and validation feedback
+- ✅ Form styling with icons and real-time validation
+- ✅ Sequential numbering instead of database IDs
 
-### Additional Features
+### Advanced Features
+- ✅ Real-time user existence validation
+- ✅ AJAX-powered sharing system
+- ✅ Filter by ownership type (all, owned, shared)
+- ✅ Status-based filtering and sorting
+- ✅ Pagination with search preservation
+- ✅ **Role-based UI restrictions** (shared users see limited interface)
+- ✅ **Multi-level security enforcement** (template, view, backend)
 - ✅ Admin panel integration
-- ✅ URL routing and management
-- ✅ CSRF protection
-- ✅ Login required decorators for protected views
-- ✅ Custom 404 and error handling
+- ✅ CSRF protection and security measures
 
 ## 🚀 Installation & Setup
 
@@ -159,13 +182,19 @@ django-todo/
 - **Primary Color:** #020013 (Deep dark blue/black)
 - **Secondary Color:** #F59E0B (Warm amber/gold)
 - **Background:** Dark theme throughout the application
-- **Accents:** Green for completed tasks, yellow for pending tasks
+- **Status Colors:** 
+  - Green for completed tasks
+  - Blue for in-progress tasks
+  - Yellow for pending tasks
+  - Gray for shared content
 
 ### Responsive Design
-- Mobile-first approach
+- Mobile-first approach with adaptive layouts
+- Desktop: Responsive table view
+- Mobile/Tablet: Card-based layout
 - Collapsible sidebar navigation
-- Responsive grid layouts
 - Touch-friendly interface elements
+- Responsive dashboard grids (1-2-4 columns)
 
 ## 🔗 URL Routes
 
@@ -174,11 +203,13 @@ django-todo/
 | `/` | login_user | User login page |
 | `/register/` | register_user | User registration |
 | `/logout/` | logout_user | User logout |
-| `/dashboard/` | dashboard | Main dashboard with statistics |
-| `/todos/` | todos | List all user todos |
-| `/dashboard/new/` | new_todo | Create new todo |
-| `/dashboard/todo/update/<id>/` | update_todo | Edit existing todo |
-| `/dashboard/todo/delete/<id>/` | delete_todo | Delete todo |
+| `/dashboard/` | dashboard | Enhanced dashboard with 3-tier statistics |
+| `/todos/` | todos | Advanced todo list with search, filter, sort |
+| `/dashboard/new/` | new_todo | Create new todo with sharing option |
+| `/dashboard/todo/update/<id>/` | update_todo | Edit todo (permission-based) |
+| `/dashboard/todo/delete/<id>/` | delete_todo | Delete todo (owners only) |
+| `/todos/share/<id>/` | share_todo | Share todo with other users |
+| `/check-user/` | check_user | Real-time username validation |
 | `/admin-login-now/` | admin | Django admin panel |
 
 

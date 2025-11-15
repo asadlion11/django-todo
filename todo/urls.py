@@ -11,4 +11,6 @@ urlpatterns = [
     path('todos/todo/<int:id>', views.todo_detail, name='todo_detail'),
     path('todos/update/<int:id>', views.update_todo, name='update_todo'),
     path('todos/delete/<int:id>', views.delete_todo, name='delete_todo'),
+    path('todos/share/<int:id>/', views.share_todo, name='share_todo'),
+    path('check-user/', views.check_user, name='check_user'),
 ]
