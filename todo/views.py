@@ -7,6 +7,10 @@ from .models import Todo
 from django.http import HttpResponse
 from django.db import models
 from django.core.paginator import Paginator
+import json
+from django.http import JsonResponse
+from django.db.models import Count, Q
+from datetime import datetime, timedelta
 
 # Create your views here.
 
@@ -338,3 +342,58 @@ def check_user(request):
         })
     except Exception as e:
         return JsonResponse({'exists': False, 'message': 'An error occurred'})
+
+
+# Chart views
+@login_required
+def chart_data(request):
+    """API endpoint to provide data for charts"""
+    
+    # Get todos for the current user (owned + shared)
+    todos = Todo.objects.filter(
+        Q(created_user=request.user) | 
+        Q(shared_with=request.user)
+    ).distinct()
+    
+    # Status distribution data
+    status_data = {
+        'TODO': todos.filter(status='TODO').count(),
+        'IN_PROGRESS': todos.filter(status='IN_PROGRESS').count(),
+        'DONE': todos.filter(status='DONE').count()
+    }
+    
+    # Completion rate
+    total_todos = todos.count()
+    completed_todos = status_data['DONE']
+    completion_rate = (completed_todos / total_todos * 100) if total_todos > 0 else 0
+    
+    # Recent activity (last 7 days)
+    recent_data = []
+    for i in range(6, -1, -1):
+        date = datetime.now().date() - timedelta(days=i)
+        day_todos = todos.filter(
+            Q(created_at__date=date) | 
+            Q(updated_at__date=date)
+        ).count()
+        recent_data.append({
+            'date': date.strftime('%a'),
+            'count': day_todos
+        })
+    
+    # Priority distribution (if you have priority field, otherwise we'll use status)
+    owned_todos = todos.filter(created_user=request.user).count()
+    shared_todos = todos.filter(shared_with=request.user).exclude(created_user=request.user).count()
+    
+    chart_data = {
+        'status_distribution': status_data,
+        'completion_rate': round(completion_rate, 2),
+        'recent_activity': recent_data,
+        'ownership_distribution': {
+            'owned': owned_todos,
+            'shared': shared_todos
+        },
+        'total_todos': total_todos,
+        'completed_todos': completed_todos
+    }
+    
+    return JsonResponse(chart_data)
