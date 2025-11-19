@@ -9,9 +9,9 @@
     <p class="text-gray-600 text-lg">Here's an overview of your tasks</p>
 </div>
 
-<!-- Row 1: Overall Stats (Your Own + Shared) -->
+<!-- Row 1: Overall Stats -->
 <div class="mb-6">
-    <h2 class="text-xl font-bold text-white mb-4">📊 Overall (Your Own + Shared)</h2>
+    <h2 class="text-xl font-bold text-white mb-4">Summary</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <!-- Overall Total -->
         <div class="bg-gradient-to-br from-[#020013] to-[#1a1a3a] rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
@@ -64,7 +64,7 @@
 </div>
 
 <!-- Row 2: Your Own Tasks -->
-<div class="mb-6">
+{% comment %} <div class="mb-6">
     <h2 class="text-xl font-bold text-white mb-4">👤 Your Own Tasks</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <!-- Owned Total -->
@@ -77,10 +77,10 @@
             </div>
             <h3 class="text-lg font-semibold mb-1">All Todos</h3>
             <p class="text-gray-300 text-sm">Your created tasks</p>
-        </div>
+        </div> {% endcomment %}
         
         <!-- Owned Completed -->
-        <div class="bg-gradient-to-br from-green-800 to-green-900 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+        {% comment %} <div class="bg-gradient-to-br from-green-800 to-green-900 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="flex items-center justify-between mb-4">
                 <span class="text-3xl lg:text-4xl font-bold text-green-300">{{ owned_done }}</span>
                 <svg class="w-8 h-8 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -89,10 +89,10 @@
             </div>
             <h3 class="text-lg font-semibold mb-1">Completed</h3>
             <p class="text-green-200 text-sm">Your finished tasks</p>
-        </div>
+        </div> {% endcomment %}
         
         <!-- Owned In Progress -->
-        <div class="bg-gradient-to-br from-blue-800 to-blue-900 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+        {% comment %} <div class="bg-gradient-to-br from-blue-800 to-blue-900 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="flex items-center justify-between mb-4">
                 <span class="text-3xl lg:text-4xl font-bold text-blue-300">{{ owned_in_progress }}</span>
                 <svg class="w-8 h-8 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -101,10 +101,10 @@
             </div>
             <h3 class="text-lg font-semibold mb-1">In Progress</h3>
             <p class="text-blue-200 text-sm">Your active tasks</p>
-        </div>
+        </div> {% endcomment %}
         
         <!-- Owned To Do -->
-        <div class="bg-gradient-to-br from-yellow-700 to-yellow-800 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+        {% comment %} <div class="bg-gradient-to-br from-yellow-700 to-yellow-800 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="flex items-center justify-between mb-4">
                 <span class="text-3xl lg:text-4xl font-bold text-yellow-200">{{ owned_todo }}</span>
                 <svg class="w-8 h-8 text-yellow-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -115,10 +115,10 @@
             <p class="text-yellow-200 text-sm">Your pending tasks</p>
         </div>
     </div>
-</div>
+</div> {% endcomment %}
 
 <!-- Row 3: Shared Tasks -->
-<div class="mb-8">
+{% comment %} <div class="mb-8">
     <h2 class="text-xl font-bold text-white mb-4">🤝 Shared with You</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <!-- Shared Total -->
@@ -131,10 +131,10 @@
             </div>
             <h3 class="text-lg font-semibold mb-1">All Todos</h3>
             <p class="text-gray-300 text-sm">Shared tasks</p>
-        </div>
+        </div> {% endcomment %}
         
         <!-- Shared Completed -->
-        <div class="bg-gradient-to-br from-green-800 to-green-900 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+        {% comment %} <div class="bg-gradient-to-br from-green-800 to-green-900 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="flex items-center justify-between mb-4">
                 <span class="text-3xl lg:text-4xl font-bold text-green-300">{{ shared_done }}</span>
                 <svg class="w-8 h-8 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -144,9 +144,9 @@
             <h3 class="text-lg font-semibold mb-1">Completed</h3>
             <p class="text-green-200 text-sm">Shared finished</p>
         </div>
-        
+         {% endcomment %}
         <!-- Shared In Progress -->
-        <div class="bg-gradient-to-br from-blue-800 to-blue-900 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+        {% comment %} <div class="bg-gradient-to-br from-blue-800 to-blue-900 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="flex items-center justify-between mb-4">
                 <span class="text-3xl lg:text-4xl font-bold text-blue-300">{{ shared_in_progress }}</span>
                 <svg class="w-8 h-8 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -155,10 +155,10 @@
             </div>
             <h3 class="text-lg font-semibold mb-1">In Progress</h3>
             <p class="text-blue-200 text-sm">Shared active</p>
-        </div>
+        </div> {% endcomment %}
         
         <!-- Shared To Do -->
-        <div class="bg-gradient-to-br from-yellow-700 to-yellow-800 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+        {% comment %} <div class="bg-gradient-to-br from-yellow-700 to-yellow-800 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
             <div class="flex items-center justify-between mb-4">
                 <span class="text-3xl lg:text-4xl font-bold text-yellow-200">{{ shared_todo }}</span>
                 <svg class="w-8 h-8 text-yellow-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -169,7 +169,7 @@
             <p class="text-yellow-200 text-sm">Shared pending</p>
         </div>
     </div>
-</div>
+</div> {% endcomment %}
 
 <!-- Quick Actions -->
 <div class="bg-[#020013] border border-gray-700 rounded-2xl shadow-xl p-6 lg:p-8">
